@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
 
-nnamespace HospitalSystem.Models;
+namespace HospitalSystem.Models;
 
 public class Paciente : Pessoa
 {

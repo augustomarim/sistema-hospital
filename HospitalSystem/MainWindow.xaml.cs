@@ -46,4 +46,3 @@ public partial class MainWindow : Window
     private void btnDepartamentos_Click(object sender, RoutedEventArgs e)
         => new DepartamentosView(_departamentoController).ShowDialog();
 }
-}
