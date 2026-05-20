@@ -1,16 +1,19 @@
 ﻿<Window x:Class="HospitalSystem.Views.ConsultasView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Consultas" Height="600" Width="900">
+        Title="Consultas" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Formulário -->
+        <!-- Formulário de agendamento -->
         <StackPanel Grid.Row="0">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -32,7 +35,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Margin="5">
-                    <TextBlock Text="Data e Hora" FontWeight="Bold"/>
+                    <TextBlock Text="Data da Consulta" FontWeight="Bold"/>
                     <DatePicker x:Name="dpData" Height="30" Margin="0,4,0,0"/>
                 </StackPanel>
             </Grid>
@@ -43,19 +46,28 @@
                          TextWrapping="Wrap" AcceptsReturn="True"/>
             </StackPanel>
 
-            <!-- Botões -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
                 <Button Content="Agendar" Width="100" Height="35"
                         Margin="5" Click="btnAgendar_Click"/>
                 <Button Content="Excluir" Width="100" Height="35"
                         Margin="5" Click="btnExcluir_Click"/>
-                <Button Content="Buscar por Período" Width="140" Height="35"
-                        Margin="5" Click="btnBuscarPeriodo_Click"/>
+                <Button Content="Mostrar Todas" Width="120" Height="35"
+                        Margin="5" Click="btnMostrarTodas_Click"/>
             </StackPanel>
         </StackPanel>
 
+        <!-- Filtro por período -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="De:" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+            <DatePicker x:Name="dpInicio" Height="30" Width="150" Margin="5"/>
+            <TextBlock Text="Até:" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+            <DatePicker x:Name="dpFim" Height="30" Width="150" Margin="5"/>
+            <Button Content="Buscar por Período" Width="150" Height="35"
+                    Margin="5" Click="btnBuscarPeriodo_Click"/>
+        </StackPanel>
+
         <!-- Lista -->
-        <DataGrid Grid.Row="2" x:Name="dgConsultas"
+        <DataGrid Grid.Row="4" x:Name="dgConsultas"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   SelectionMode="Single">

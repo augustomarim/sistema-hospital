@@ -25,7 +25,13 @@
 
                 <StackPanel Grid.Column="1" Margin="5">
                     <TextBlock Text="Bloco" FontWeight="Bold"/>
-                    <TextBox x:Name="txtBloco" Height="30" Margin="0,4,0,0"/>
+                    <ComboBox x:Name="cmbBloco" Height="30" Margin="0,4,0,0">
+                        <ComboBoxItem>A</ComboBoxItem>
+                        <ComboBoxItem>B</ComboBoxItem>
+                        <ComboBoxItem>C</ComboBoxItem>
+                        <ComboBoxItem>D</ComboBoxItem>
+                        <ComboBoxItem>E</ComboBoxItem>
+                    </ComboBox>
                 </StackPanel>
             </Grid>
 

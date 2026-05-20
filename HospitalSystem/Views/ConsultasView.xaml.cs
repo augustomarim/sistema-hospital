@@ -60,6 +60,7 @@ public partial class ConsultasView : Window
 
             await _consultaController.AgendarAsync(consulta);
             await CarregarGridAsync();
+            LimparFormulario();
             MessageBox.Show("Consulta agendada com sucesso!", "Sucesso",
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -84,11 +85,34 @@ public partial class ConsultasView : Window
         }
     }
 
+    private async void btnMostrarTodas_Click(object sender, RoutedEventArgs e)
+        => await CarregarGridAsync();
+
     private async void btnBuscarPeriodo_Click(object sender, RoutedEventArgs e)
     {
-        var inicio = DateTime.Now.AddMonths(-1);
-        var fim = DateTime.Now;
+        if (dpInicio.SelectedDate is null || dpFim.SelectedDate is null)
+        {
+            MessageBox.Show("Selecione as datas de início e fim.", "Validação",
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        var inicio = dpInicio.SelectedDate.Value;
+        var fim = dpFim.SelectedDate.Value.AddDays(1); 
+
         var consultas = await _consultaController.BuscarPorPeriodoAsync(inicio, fim);
         dgConsultas.ItemsSource = consultas.ToList();
+
+        if (!consultas.Any())
+            MessageBox.Show("Nenhuma consulta encontrada no período.", "Resultado",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
+    private void LimparFormulario()
+    {
+        cmbPaciente.SelectedIndex = -1;
+        cmbMedico.SelectedIndex = -1;
+        dpData.SelectedDate = null;
+        txtDiagnostico.Clear();
     }
 }

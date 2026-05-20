@@ -39,7 +39,7 @@ public partial class DepartamentosView : Window
             var departamento = new Departamento
             {
                 Nome = txtNome.Text.Trim(),
-                Bloco = txtBloco.Text.Trim()
+                Bloco = (cmbBloco.SelectedItem as ComboBoxItem)?.Content.ToString() ?? string.Empty
             };
 
             await _controller.SalvarAsync(departamento);
@@ -75,6 +75,5 @@ public partial class DepartamentosView : Window
     private void LimparFormulario()
     {
         txtNome.Clear();
-        txtBloco.Clear();
     }
 }

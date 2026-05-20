@@ -34,7 +34,8 @@ public class HospitalDbContext : DbContext
         modelBuilder.Entity<Funcionario>()
             .HasOne(f => f.Departamento)
             .WithMany(d => d.Funcionarios)
-            .HasForeignKey(f => f.DepartamentoId);
+            .HasForeignKey(f => f.DepartamentoId)
+            .IsRequired(false);
 
         modelBuilder.Entity<Consulta>()
             .HasOne(c => c.Paciente)
