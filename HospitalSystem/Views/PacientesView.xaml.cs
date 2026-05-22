@@ -126,4 +126,16 @@ public partial class PacientesView : Window
         tb.CaretIndex = formatted.Length;
         tb.TextChanged += txtTelefone_TextChanged;
     }
+
+    private void btnVerFicha_Click(object sender, RoutedEventArgs e)
+    {
+        if (dgPacientes.SelectedItem is not Paciente selecionado)
+        {
+            MessageBox.Show("Selecione um paciente.", "Aviso",
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        new FichaMedicaView(selecionado, _controller).ShowDialog();
+    }
 }

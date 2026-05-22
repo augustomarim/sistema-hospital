@@ -22,7 +22,9 @@ public class PacienteController
     }
 
     public async Task<IEnumerable<Paciente>> CarregarTodosAsync()
-        => await _repository.GetAllAsync();
+    => await _context.Pacientes
+        .Include(p => p.FichaMedica)
+        .ToListAsync();
 
     public async Task SalvarAsync(Paciente paciente)
     {
